@@ -1,0 +1,24 @@
+/* line 3, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+#editor-ctn {
+  box-sizing: content-box;
+  height: 500px;
+  width: 400px;
+  padding: 0;
+  background-color: #2b303b;
+}
+/* line 10, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+#editor {
+  height: 100%;
+  padding: 1em;
+  background-color: #f5f5f5;
+  font-family: 'monaco';
+}
+/* line 17, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+#editor:focus {
+  outline: none;
+}
+/* line 3, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+* {
+  font-size: 16px;
+  line-height: 1.5;
+}

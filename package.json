@@ -10,6 +10,8 @@
     "gulp-replace": "^0.3.0",
     "gulp-less": "^1.2.3",
     "gulp-cond": "0.0.2",
-    "gulp-changed": "^0.3.0"
+    "gulp-changed": "^0.3.0",
+    "gulp-util": "^2.2.14",
+    "gulp-plumber": "^0.6.1"
   }
 }
