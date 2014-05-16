@@ -1,10 +1,12 @@
 extends helper/layout
 
 block head-content
-    link(rel="stylesheet", type="text/stylesheet", href="../css/dashboard.css")
-    title Dashboard
+  link(rel="stylesheet", type="text/stylesheet", href="../css/dashboard.css")
+  title Dashboard
 
 block body-content
-    include partial/sidebar
-
+  include partial/sidebar
+  #main
     include partial/editor
+
+  script(src="http://127.0.0.1:9085/livereload.js?ext=Chrome&extver=2.0.9")

@@ -1,3 +1,4 @@
+var path = require('path');
 var gulp = require('gulp');
 var jade = require('gulp-jade');
 var less = require('gulp-less');
@@ -7,6 +8,9 @@ var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
 var cond = require('gulp-cond');
 var changed = require('gulp-changed');
+
+var liveReload = require('gulp-livereload');
+var port = 9085;
 
 function onErr(err){
     gutil.beep();
@@ -76,17 +80,24 @@ gulp.task('mv', function(){
         .pipe( gulp.dest('./dist/lib') );
 });
 
+var LR = liveReload( port );
 gulp.task('watch', function(){
-    
     // 或者专门弄一个文件, 这个文件改了再"编译(类似c++开发客户端的编译)"
     gulp.watch(atom.trigger, ['atom']);
 
     gulp.watch( Conf.less.watch, ['less'] );
     gulp.watch( Conf.jade.watch, ['jade'] );
     gulp.watch( Conf.coffee.watch, ['coffee'] );
+
+    var cssPath = path.join(Conf.less.dest, '/*'),
+        htmlPath = path.join( Conf.jade.dest, '/*' );
+    gulp.watch( [cssPath, htmlPath], function( file ){
+      LR.changed( file.path );
+    } );
 });
 
 gulp.task('base', [ 'less', 'jade', 'coffee' ])
 
 gulp.task('default', ['atom', 'base']);
-gulp.task('wd', ['atom', 'base', 'watch']);
+// gulp.task('wd', ['atom', 'base', 'watch']);
+gulp.task('wd', [ 'base', 'watch']);

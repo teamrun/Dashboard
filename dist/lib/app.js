@@ -3,7 +3,7 @@ var preProcess;
 define(function(require, exports, module) {
   var appView;
   appView = require('./view/app-view');
-  return document.body.innerHTML += Date.now();
+  return document.querySelector('#main').innerHTML += Date.now();
 });
 
 preProcess = function(innerHTML) {

@@ -1,6 +1,6 @@
 define( ( require, exports, module )->
     appView = require( './view/app-view' );
-    document.body.innerHTML += Date.now();
+    document.querySelector('#main').innerHTML += Date.now();
 )
 
 preProcess = ( innerHTML ) ->
