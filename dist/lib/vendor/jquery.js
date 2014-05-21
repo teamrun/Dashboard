@@ -17,6 +17,7 @@
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
 // Support: Firefox 18+
+
 //"use strict";
 var
 	// The deferred used on DOM ready
@@ -9785,5 +9786,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 		define( "jquery", [], function () { return jQuery; } );
 	}
 }
+
+window.$ = jQuery;
+
 
 })( window );

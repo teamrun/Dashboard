@@ -8,5 +8,13 @@ block body-content
   include partial/sidebar
   #main
     include partial/editor
+    include partial/photo-timeline
+
+
+block footer-script
+  script.
+    // alert('seajs works, but no absolute path please');
+    seajs.use('../lib/app.js');
+
 
   script(src="http://127.0.0.1:9085/livereload.js?ext=Chrome&extver=2.0.9")

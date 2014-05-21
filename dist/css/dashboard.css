@@ -1,28 +1,43 @@
-/* line 3, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+/* line 4, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 120px;
+  padding-top: 3em;
   background-color: #2b303b;
 }
-/* line 11, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
-nav ul.nav-list {
+/* line 14, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+nav ul#nav-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
-/* line 13, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
-nav ul.nav-list li > a {
+/* line 20, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+nav ul#nav-list li a {
+  display: block;
+  padding: 0.5em 0 0.5em 2em;
   color: #eee;
   text-decoration: none;
 }
-/* line 5, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
-.wrapper {
-  position: relative;
-  height: 100%;
-  padding-right: 1em;
+/* line 26, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+nav ul#nav-list li,
+nav ul#nav-list li a {
+  -webkit-transition: all ease 250ms;
+  -moz-transition: all ease 250ms;
+  -ms-transition: all ease 250ms;
+  -o-transition: all ease 250ms;
+  transition: all ease 250ms;
 }
-/* line 10, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+/* line 31, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+nav ul#nav-list li:hover a {
+  color: #566076;
+  background-color: #cccccc;
+}
+/* line 36, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/sidebar.less */
+nav ul#nav-list li a.active {
+  color: #2b303b;
+  background-color: #fff;
+}
+/* line 5, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
 #editor-ctn {
   position: absolute;
   width: 400px;
@@ -32,42 +47,112 @@ nav ul.nav-list li > a {
   bottom: 1.5em;
   background-color: #2b303b;
 }
-/* line 19, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+/* line 14, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
 #editor {
   height: 100%;
   width: 100%;
   padding: 1em;
   border: none;
-  background-color: #f5f5f5;
+  background-color: #bbb;
   font-family: 'monaco';
 }
-/* line 28, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+/* line 24, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
 #editor:focus {
   outline: none;
 }
-/* line 32, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
+/* line 28, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/editor.less */
 iframe#editor {
   padding: 0;
 }
-/* line 6, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+/* line 4, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/photo-timeline.less */
+#add-photo {
+  width: 300px;
+  height: 200px;
+  border: 3px dashed #ddd;
+  border-radius: 10px;
+}
+/* line 10, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/photo-timeline.less */
+#add-photo.dragenter {
+  border-color: #accded;
+}
+/* line 8, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
 * {
   font-size: 16px;
   line-height: 1.5;
   box-sizing: border-box;
 }
-/* line 11, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+/* line 13, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
 html {
   height: 100%;
 }
-/* line 14, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+/* line 16, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
 }
-/* line 20, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+/* line 27, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
 #main {
   height: 100%;
-  margin-left: 120px;
   padding-left: 1em;
+  background-color: rgba(172, 205, 237, 0.3);
+  overflow: hidden;
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+/* line 38, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main .wrapper {
+  position: relative;
+  padding-right: 1em;
+  overflow: hidden;
+  height: 0;
+  z-index: -10;
+  opacity: 0;
+}
+/* line 46, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main .wrapper.goup.active,
+#main .wrapper.godown.active {
+  height: 100%;
+  overflow: auto;
+  z-index: 100;
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: opacity ease-out 300ms, -webkit-transform ease-out 300ms;
+  -moz-transition: opacity ease-out 300ms, -webkit-transform ease-out 300ms;
+  -ms-transition: opacity ease-out 300ms, -webkit-transform ease-out 300ms;
+  -o-transition: opacity ease-out 300ms, -webkit-transform ease-out 300ms;
+  transition: opacity ease-out 300ms, -webkit-transform ease-out 300ms;
+}
+/* line 57, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main .wrapper.goup {
+  -webkit-transform: translateY(30%);
+  -moz-transform: translateY(30%);
+  -ms-transform: translateY(30%);
+  -o-transform: translateY(30%);
+  transform: translateY(30%);
+}
+/* line 60, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main .wrapper.godown {
+  -webkit-transform: translateY(-30%);
+  -moz-transform: translateY(-30%);
+  -ms-transform: translateY(-30%);
+  -o-transform: translateY(-30%);
+  transform: translateY(-30%);
+}
+/* line 64, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main #editor-wrapper {
+  background-color: rgba(44, 146, 176, 0.6);
+}
+/* line 65, /Users/chenllos/Documents/dev/atom-shell/Dashboard/less/dashboard.less */
+#main #photo-wrapper {
+  background-color: rgba(255, 118, 65, 0.6);
 }

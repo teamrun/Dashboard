@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var jade = require('gulp-jade');
 var less = require('gulp-less');
 var coffee = require('gulp-coffee');
+var concat = require('gulp-concat');
 
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
@@ -44,6 +45,12 @@ var Conf = {
         file: './coffee/**/*.coffee',
         dest: './dist/lib',
         watch: './coffee/**/*.coffee',
+    },
+    concatUI: {
+        file: ['./dist/lib/UIkit/index.js', './dist/lib/UIkit/**/*.js', '!./dist/lib/UIkit/cllUI.js'],
+        name: 'cllUI.js',
+        dest: './dist/lib/UIkit/',
+        watch: ['./dist/lib/UIkit/*', '!./dist/lib/UIkit/cllUI.js']
     }
 }
 
@@ -69,9 +76,16 @@ gulp.task('jade', function(){
 gulp.task('coffee', function(){
     gulp.src( Conf.coffee.file )
     // coffee错误处理 需要监听stream的错误消息
-        .pipe( coffee({bare: true}).on('error', gutil.log) )
+        .pipe( changed( Conf.coffee.dest, { extension: '.js' } ) )
+        .pipe( coffee().on('error', gutil.log) )
         .pipe( errHanlder() )
         .pipe(gulp.dest(Conf.coffee.dest) );
+});
+
+gulp.task('concatUI', function(){
+    gulp.src( Conf.concatUI.file )
+        .pipe( concat(Conf.concatUI.name) )
+        .pipe( gulp.dest( Conf.concatUI.dest ) );
 });
 
 gulp.task('mv', function(){
@@ -88,6 +102,8 @@ gulp.task('watch', function(){
     gulp.watch( Conf.less.watch, ['less'] );
     gulp.watch( Conf.jade.watch, ['jade'] );
     gulp.watch( Conf.coffee.watch, ['coffee'] );
+
+    gulp.watch( Conf.concatUI.watch, ['concatUI'] );
 
     var cssPath = path.join(Conf.less.dest, '/*'),
         htmlPath = path.join( Conf.jade.dest, '/*' );

@@ -1,18 +1,42 @@
 @import './config.less';
+@import './mixin.less';
 
 nav{
-  position: fixed;
-  top: 0;
-  left: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+
   height: 100%;
   width: @sidebarW;
+  padding-top: 3em;
   background-color: @sidebarBGC;
 
-  ul.nav-list{
+  ul#nav-list{
     list-style: none;
-    li>a{
-      color: #eee;
-      text-decoration: none;
+    padding: 0;
+    margin: 0;
+    li{
+      
+      a{
+        display: block;
+        padding: 0.5em 0 0.5em 2em;
+        color: #eee;
+        text-decoration: none;
+      }
+      &, a{
+        .tst();
+      }
+
+      &:hover{
+        a{
+          color: lighten(@sidebarBGC, 20%);
+          background-color: darken(#fff, 20%);
+        }
+      }
+      a.active{
+        color: @sidebarBGC;
+        background-color: #fff;
+      }
     }
   }
 }

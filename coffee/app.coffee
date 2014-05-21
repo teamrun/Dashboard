@@ -1,6 +1,15 @@
 define( ( require, exports, module )->
     appView = require( './view/app-view' );
-    document.querySelector('#main').innerHTML += Date.now();
+
+    sidebar = require './view/sidebar'
+
+    photoTimeLine = require './view/photo-timeline'
+
+
+    sidebar.init()
+    photoTimeLine.init()
+
+    # document.querySelector('#main .wrapper').innerHTML += Date.now();
 )
 
 preProcess = ( innerHTML ) ->
