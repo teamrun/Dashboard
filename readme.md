@@ -23,7 +23,7 @@
     gulp base
     // transport app files to atom-shell, you should place a atom-shell default app here
     // download: https://github.com/atom/atom-shell/releases
-    // cause this task will open and transport to much files, it should run separated
+    // cause this task will open and transport too much files, it should run separatedly
     gulp atom
 
 then you can double click the atom-shell app and see my Awesome job.
