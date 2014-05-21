@@ -1,2 +1,3 @@
 *.app
 /dist/**/*
+# how to deal with /dist/vendor ?
