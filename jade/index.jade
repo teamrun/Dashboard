@@ -1,7 +1,7 @@
 extends helper/layout
 
 block head-content
-  link(rel="stylesheet", type="text/stylesheet", href="../css/dashboard.css")
+  link(rel="stylesheet", type="text/stylesheet", href="./css/dashboard.css")
   title Dashboard
 
 block body-content
@@ -14,7 +14,7 @@ block body-content
 block footer-script
   script.
     // alert('seajs works, but no absolute path please');
-    seajs.use('../lib/app.js');
+    seajs.use('./lib/app.js');
 
 
   script(src="http://127.0.0.1:9085/livereload.js?ext=Chrome&extver=2.0.9")

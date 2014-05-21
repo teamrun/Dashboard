@@ -38,7 +38,7 @@ var Conf = {
     },
     jade: {
         file: './jade/*.jade',
-        dest: './dist/page',
+        dest: './dist',
         watch: './jade/**/*'
     },
     coffee: {
