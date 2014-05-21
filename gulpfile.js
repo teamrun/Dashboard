@@ -74,7 +74,7 @@ gulp.task('jade', function(){
         .pipe(gulp.dest(Conf.jade.dest));
 });
 gulp.task('coffee', function(){
-    gulp.src( Conf.coffee.file )
+    return gulp.src( Conf.coffee.file )
     // coffee错误处理 需要监听stream的错误消息
         .pipe( changed( Conf.coffee.dest, { extension: '.js' } ) )
         .pipe( coffee().on('error', gutil.log) )
@@ -82,7 +82,7 @@ gulp.task('coffee', function(){
         .pipe(gulp.dest(Conf.coffee.dest) );
 });
 
-gulp.task('concatUI', function(){
+gulp.task('concatUI', ['coffee'], function(){
     gulp.src( Conf.concatUI.file )
         .pipe( concat(Conf.concatUI.name) )
         .pipe( gulp.dest( Conf.concatUI.dest ) );
@@ -94,8 +94,9 @@ gulp.task('mv', function(){
         .pipe( gulp.dest('./dist/lib') );
 });
 
-var LR = liveReload( port );
 gulp.task('watch', function(){
+    var LR = liveReload( port );
+    
     // 或者专门弄一个文件, 这个文件改了再"编译(类似c++开发客户端的编译)"
     gulp.watch(atom.trigger, ['atom']);
 
@@ -112,7 +113,7 @@ gulp.task('watch', function(){
     } );
 });
 
-gulp.task('base', [ 'less', 'jade', 'coffee' ])
+gulp.task('base', [ 'less', 'jade', 'concatUI' ])
 
 gulp.task('default', ['atom', 'base']);
 // gulp.task('wd', ['atom', 'base', 'watch']);
