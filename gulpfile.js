@@ -97,8 +97,13 @@ gulp.task('mv', function(){
 gulp.task('watch', function(){
     var LR = liveReload( port );
     
-    // 或者专门弄一个文件, 这个文件改了再"编译(类似c++开发客户端的编译)"
-    gulp.watch(atom.trigger, ['atom']);
+    // atom任务每次执行消耗很大...
+    // 每次有文件改动都要执行一次吗?
+    // 或者像前端优化scroll和resize事件处理程序一样
+    //      价格setTimeout?
+    // 又或者专门弄一个文件, 这个文件改了再"编译"
+    // 对, 加一个触发器~ 触发文件
+    gulp.watch( atom.trigger, ['atom'] );
 
     gulp.watch( Conf.less.watch, ['less'] );
     gulp.watch( Conf.jade.watch, ['jade'] );
