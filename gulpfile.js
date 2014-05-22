@@ -121,5 +121,13 @@ gulp.task('watch', function(){
 gulp.task('base', [ 'less', 'jade', 'concatUI' ])
 
 gulp.task('default', ['atom', 'base']);
+
+// 最初的wd task( watch develop 任务 )是依赖了atom任务的
+// 但是某个时间点后每次启动都会再jade任务中报错,超过了文件读取数最大限制
+// 查了资料才知道, OSX限制256,
+// 之所以会超出是因为匹配到了node_module而且任务也需要这样的匹配
+// 所以将atom从wd中里面拿了出去
+// 并配合触发文件来实现watch执行atom
+// 再配合上changed优化, 哼哼
 // gulp.task('wd', ['atom', 'base', 'watch']);
 gulp.task('wd', [ 'base', 'watch']);
