@@ -6,8 +6,7 @@ var terminal = require('./lib/index.js');
  * Copyright (c) 2012-2013, Christopher Jeffrey (MIT License)
  */
 
-var express = require('express')
-  , io = require('socket.io')
+var io = require('socket.io')
   , pty = require('pty.js');
 
 /**
