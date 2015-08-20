@@ -104,42 +104,7 @@ console.log(''
 
 module.exports = function bindToApp(app, server){
 
-    // app.use(function(req, res, next) {
-    //   var setHeader = res.setHeader;
-    //   res.setHeader = function(name) {
-    //     switch (name) {
-    //       case 'Cache-Control':
-    //       case 'Last-Modified':
-    //       case 'ETag':
-    //         return;
-    //     }
-    //     return setHeader.apply(res, arguments);
-    //   };
-    //   next();
-    // });
-
-    // app.use(express.basicAuth(function(user, pass, next) {
-    //   if (user !== 'foo' || pass !== 'bar') {
-    //     return next(true);
-    //   }
-    //   return next(null, user);
-    // }));
-
     app.use(terminal.middleware());
-
-    if (!~process.argv.indexOf('-n')) {
-      server.on('connection', function(socket) {
-        var address = socket.remoteAddress;
-        if (address !== '127.0.0.1' && address !== '::1') {
-          try {
-            socket.destroy();
-          } catch (e) {
-            ;
-          }
-          console.log('Attempted connection from %s. Refused.', address);
-        }
-      });
-    }
 
 
     /**
