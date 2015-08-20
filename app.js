@@ -23,6 +23,7 @@ var server = require('http').Server(app.callback());
 addTerminal(app, server);
 
 
-server.listen(8000, function(){
-    console.log('app is listening at 8080')
+var port = 8000;
+server.listen(port, function(){
+    console.log('app is listening at', port);
 });
