@@ -37,7 +37,7 @@ term = pty.fork(process.env.SHELL || 'sh', [], {
     ? 'xterm-256color'
     : 'xterm',
   cols: 100,
-  rows: 36,
+  rows: 32,
   cwd: process.env.HOME
 });
 

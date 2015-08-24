@@ -2,25 +2,22 @@ var app = require('koa')();
 var thunkify = require('thunkify');
 
 var serve = require('koa-static');
-var addTerminal = require('./termjs');
+var trieRouter = require('koa-trie-router');
+var views = require('co-views');
 
-var readFile = thunkify(require('fs').readFile)
+var addTerminal = require('./termjs');
+var addRoutes = require('./routes');
 
 
 app.use(serve(__dirname + '/assets', {}));
+app.use(trieRouter(app));
 
-app.use(function*(next){
-    if(this.url == '/terminal.html'){
-        this.set('Content-Type', 'text/html');
-        this.body = yield readFile('./views/terminal.html', 'utf-8');
-    }
-    else{
-        yield next;
-    }
-})
 
 var server = require('http').Server(app.callback());
+global.render = views(__dirname + '/views', { ext: 'jade' });
+
 addTerminal(app, server);
+addRoutes(app);
 
 
 var port = 8000;
